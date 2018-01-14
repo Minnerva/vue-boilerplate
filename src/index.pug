@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    meta(http-equiv="X-UA-Compatible", content="ie=edge")
+    title Awesome Application
+    base(href=htmlWebpackPlugin.options.env.base)
+    link(href="https://fonts.googleapis.com/css?family=Open+Sans", rel="stylesheet")
+    if htmlWebpackPlugin.options.env.prod
+      script(async, src="https://www.googletagmanager.com/gtag/js?id=" + htmlWebpackPlugin.options.env.key.analytics)
+      script.
+        window.dataLayer = window.dataLayer || []
+        function gtag(){dataLayer.push(arguments)}
+        gtag('js', new Date())
+        gtag('config', '#{htmlWebpackPlugin.options.env.key.analytics}')
+  body
+    div#app
+      router-view

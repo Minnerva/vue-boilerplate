@@ -1,0 +1,64 @@
+{
+  "name": "vue-boilerplate",
+  "version": "0.1.0",
+  "description": "Boilerplate of vuejs with webpack and many more",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server --config webpack/webpack.config.js --env=dev",
+    "script": "webpack --config webpack/webpack.config.js --env=dev",
+    "watch": "webpack --progress --watch --config webpack/webpack.config.js --env=dev",
+    "dist": "webpack --config webpack/webpack.config.js --env=prod",
+    "serve": "http-server ./dist",
+    "serve-dev": "npm run script && http-server ./dist",
+    "serve-dist": "npm run dist && http-server ./dist",
+    "deploy": "deploy.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Minnerwa/vue-boilerplate.git"
+  },
+  "author": "Minnerwa <potchara40@hotmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Minnerwa/vue-boilerplate/issues"
+  },
+  "homepage": "https://github.com/Minnerwa/vue-boilerplate#readme",
+  "dependencies": {
+    "bulma": "^0.6.2",
+    "font-awesome": "^4.7.0",
+    "vue": "^2.5.13",
+    "vue-router": "^3.0.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.1",
+    "clean-webpack-plugin": "^0.1.17",
+    "copy-webpack-plugin": "^4.3.1",
+    "css-loader": "^0.28.8",
+    "eslint": "^4.15.0",
+    "eslint-config-standard": "^11.0.0-beta.0",
+    "eslint-loader": "^1.9.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-node": "^5.2.1",
+    "eslint-plugin-promise": "^3.6.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "file-loader": "^1.1.6",
+    "html-webpack-plugin": "^2.30.1",
+    "http-server": "^0.11.1",
+    "node-sass": "^4.7.2",
+    "optimize-css-assets-webpack-plugin": "^3.2.0",
+    "pug": "^2.0.0-rc.4",
+    "pug-loader": "^2.3.0",
+    "sass-loader": "^6.0.6",
+    "style-loader": "^0.19.1",
+    "stylus": "^0.54.5",
+    "stylus-loader": "^3.0.1",
+    "vue-loader": "^13.7.0",
+    "vue-template-compiler": "^2.5.13",
+    "webpack": "^3.10.0",
+    "webpack-dev-server": "^2.10.1",
+    "webpack-merge": "^4.1.1"
+  }
+}
