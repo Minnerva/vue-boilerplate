@@ -1,15 +1,18 @@
 const webpack = require('webpack')
 const merge = require('webpack-merge')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 const common = require('./webpack.common')
-const { distDir, pathResolve } = require('./webpack.util.js')
+const { distDir, env } = require('./webpack.util')
+
+const publicPath = `http://localhost:${env.dev.port}/`
 
 module.exports = merge(common, {
+  mode: 'development',
   devtool: 'inline-source-map',
   devServer: {
-    port: 8080,
+    port: env.dev.port,
     hot: true,
     contentBase: distDir,
     publicPath: '/',
@@ -17,18 +20,21 @@ module.exports = merge(common, {
   },
   output: {
     filename: '[name].js',
-    publicPath: '/'
+    publicPath: publicPath
   },
   plugins: [
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
-    new ExtractTextPlugin('style.css'),
+    new MiniCssExtractPlugin({
+      filename: '[name].css',
+      chunkFilename: '[id].css'
+    }),
     new HtmlWebpackPlugin({
-      template: './src/index.pug',
+      template: '!!pug-loader!./src/index.pug',
       filename: 'index.html',
       env: {
         dev: true,
-        base: ''
+        base: publicPath
       }
     })
   ]

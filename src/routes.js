@@ -1,7 +1,7 @@
-import LayoutDefault from '~layouts/Default'
+import LayoutDefault from '@layouts/Default'
 
-import ViewIndex from '~views/Index'
-import ViewError404 from '~views/error/404'
+import ViewIndex from '@views/Index'
+import ViewError404 from '@views/error/404'
 
 export default [
   {

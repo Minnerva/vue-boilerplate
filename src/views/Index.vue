@@ -1,16 +1,12 @@
 <template lang="pug">
   div
-    section-hero
-    section-announcement
-    section-features
+    section-jumbotron
 </template>
 
 <script>
-  import SectionHero from '~components/section/Hero'
-  import SectionAnnouncement from '~components/section/Announcement'
-  import SectionFeatures from '~components/section/Features'
+  import SectionJumbotron from '@components/section/Jumbotron'
 
   export default {
-    components: { SectionHero, SectionAnnouncement, SectionFeatures }
+    components: { SectionJumbotron }
   }
 </script>

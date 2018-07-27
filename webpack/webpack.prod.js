@@ -1,38 +1,36 @@
-const webpack = require('webpack')
 const merge = require('webpack-merge')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
-const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 const common = require('./webpack.common')
-const { distDir, pathResolve } = require('./webpack.util.js')
+const { env } = require('./webpack.util')
 
 module.exports = merge(common, {
+  mode: 'production',
   output: {
-    filename: '[name].[chunkhash].js', // attact hash with the file name, if file has no change, hash stays the same.
+    filename: '[name].[chunkhash].js',
+    publicPath: env.prod.url
   },
   plugins: [
-    new webpack.optimize.UglifyJsPlugin({
-      compress: { warnings: false }
-    }),
-    new ExtractTextPlugin('style.[contenthash].css'),
-    // minifycss
+    new UglifyJSPlugin({ sourceMap: false }),
     new OptimizeCssAssetsPlugin({
       assetNameRegExp: /\.css$/g,
       cssProcessor: require('cssnano'),
       cssProcessorOptions: { discardComments: { removeAll: true } },
       canPrint: true
     }),
+    new MiniCssExtractPlugin({
+      filename: '[name].[hash].css',
+      chunkFilename: '[id].[hash].css'
+    }),
     new HtmlWebpackPlugin({
-      template: './src/index.pug',
+      template: '!!pug-loader!./src/index.pug',
       filename: 'index.html',
       env: {
         prod: true,
-        base: 'http://localhost:8080/',
-        key: {
-          analytics: ''
-        }
+        base: env.prod.url
       }
     })
   ]
